@@ -1,0 +1,3 @@
+accountName <your_storage_account_name>
+accountKey <your_storage_account_key>
+containerName <your_container_name>
