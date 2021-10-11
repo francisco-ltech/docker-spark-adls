@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  blobfuse:
+    container_name: adls-blobfuse
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: adls-blobfuse:latest
+    privileged: true
+    cap_add:
+      - SYS_ADMIN
+    devices:
+      - /dev/fuse
+    command: >
+      bash -c "blobfuse /mnt/adls --tmp-path=/mnt/blobfusetmp --config-file=/tmp/blobfusecfg/fuse_connection.cfg --basic-remount-check=true --use-adls=true -o allow_other
+      && tail -f /dev/null"
